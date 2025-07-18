@@ -1,0 +1,357 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  color: #333;
+}
+
+header {
+  background: #000;
+  color: white;
+  padding: 0;
+  text-align: center;
+  border-radius: 2px;
+  height: 290px;
+  position: relative;
+  overflow: hidden;
+}
+.header-carousel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+.header-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* Remplit tout le header, coupe juste ce qui dépasse */
+  object-position: center;
+    object-position: center 25%; /* 35% = descend l'image pour voir plus bas que le centre */
+
+  display: block;
+  border-radius: 0;
+  background: #000;
+}
+.header-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+}
+
+header {
+  background: #000;
+  color: white;
+  padding: 0;
+  text-align: center;
+  border-radius: 2px;
+  height: 290px;
+  position: relative;
+  overflow: visible; /* pour permettre au logo de "rentrer" */
+  z-index: 1;
+  /* Ajoute le "creux" visuel en bas du header */
+}
+header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -40px; /* doit être négatif et égal à -(diamètre du logo/2) */
+  transform: translateX(-50%);
+  width: 120px;    /* diamètre du creux = diamètre du logo */
+  height: 0px;
+  background: #fff; /* la couleur de fond du body ou de la section suivante */
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 0 0 2px #000; /* optionnel: léger trait noir autour du creux */
+}
+
+.main-logo-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: -40px; /* remonte le logo pour qu'il "rentre" dans le creux */
+  position: relative;
+  z-index: 5;
+}
+
+.main-logo {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff; /* contour blanc autour du logo, optionnel */
+  background: #fff;
+}
+
+.header-dots .dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.6);
+  transition: background 0.3s, border 0.3s;
+}
+
+.header-dots .dot.active {
+  background-color: #8a4d1b;
+  border: 2px solid #fff;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero {
+  background: url('img/banner.jpg') no-repeat center center / cover;
+  height: 300px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.btn {
+  background: #8a4d1b;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 25px;
+  margin-top: 1rem;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.btn:hover {
+  background: #8a4d1b;
+}
+
+.categories h3 {
+  margin-bottom: 3rem;
+  margin-left: 15px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 2.5rem;
+  margin: 2rem auto;
+  justify-items: center;
+  justify-content: center; /* ✅ Ajouté */
+  max-width: 1000px;        /* ✅ Pour éviter que ça s'étale trop */
+}
+
+
+.cat-grid div {
+  text-align: center;
+}
+
+.cat-grid img {
+  width: 130px;
+  border-radius: 12px;
+}
+
+.carousel {
+  position: relative;
+  width: 130px;
+  text-align: center;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 10px;
+  margin-bottom: 7px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dot.active {
+  background: #8a4d1b;
+}
+
+.video-row {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;   /* <-- Ajoute un espace de 2rem entre les deux vidéos, ajuste la valeur si besoin */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+    padding: 0 0 70px 0;  /* Ajoute 70px de padding-bottom pour l'espace avec la nav-bar */
+
+}
+
+.video-row video {
+  height: 220px;      /* même hauteur pour toutes les vidéos */
+  width: 140px;        /* largeur s’ajuste au ratio */
+  max-width: 100%;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;  /* utile si tu veux remplir le cadre, à enlever si tu veux garder tout le contenu */
+}
+
+.carousel p {
+  margin: 0;
+
+  padding: 0;
+  text-align: left;
+}
+.carousel p:first-of-type {
+  margin-bottom: 5px; /* Ajustez la valeur selon le rendu souhaité */
+}
+/* Ajoutez ceci à la fin de votre style.css ou adaptez-le selon vos besoins */
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw; /* Toujours occuper toute la largeur de l'écran */
+  background: #0e0c0c;
+  z-index: 1000;
+  border-radius: 0;
+}
+
+
+.bottom-nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 0.5em 0;
+  list-style: none;
+}
+
+.bottom-nav li a {
+  color: #fcf9f9;
+  text-decoration: none;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: color 0.2s;
+}
+
+.bottom-nav li a:hover {
+  color: #8a4d1b;
+}
+
+.bottom-nav i {
+  font-size: 1.5em;
+}
+
+.bottom-nav span {
+  font-size: 0.9em;
+}
+
+@media (min-width: 800px) {
+  .bottom-nav {
+    width: 100vw; /* Toujours 100% même sur bureau */
+    left: 0;
+    transform: none;
+  }
+}
+
+/* Barre de recherche centrée */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  margin: 59px 0 49px 0; /* marge inférieure augmentée */
+}
+.search-bar {
+  display: flex;
+  border: 1.5px solid #c7bdb3;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+}
+.search-bar input[type="text"] {
+  border: none;
+  padding: 10px 15px;
+  outline: none;
+  font-size: 1em;
+  min-width: 10px;
+  background: transparent;
+}
+.search-bar button {
+  border: none;
+  background: #dfc8a0;
+  color: #3b2b14;
+  padding: 0 16px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background 0.2s;
+}
+.search-bar button:hover {
+  background: #cdb37d;
+}
+.video-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;            /* ✅ Permet de s'adapter sur petit écran */
+  gap: 2rem;
+  margin: 2rem auto;
+  padding-bottom: 70px;
+  max-width: 1000px;          /* ✅ Centre dans une largeur contrôlée */
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* taille min pour éviter l'écrasement */
+  max-width: 900px;               /* ✅ 4 x 180px + marges ≈ 800px */
+  margin: 2rem auto;              /* ✅ centre la grille */
+  gap: 3.5rem;
+  justify-content: center;       /* ✅ centre les items horizontalement */
+  justify-items: center;
+}
+.cat-grid img {
+  width: 180px;         /* ✅ Agrandi l'image */
+  height: 240px;        /* ✅ Hauteur fixe pour un rendu uniforme */
+  object-fit: cover;    /* ✅ Garde un bon ratio sans déformer */
+  border-radius: 12px;
+}
+
+.categories h3 {
+  text-align: left;
+  padding-left: 29px;
+  margin: 20px 0;
+  font-size: 19px;
+  color: #333;
+}
+

@@ -1,0 +1,209 @@
+body {
+  font-family: Arial, sans-serif;
+}
+.page-title {
+  margin-top: 22px;
+  margin-bottom: 38px;
+  text-align: center;
+  font-size: 30px;
+  color: #141010;
+  letter-spacing: 2px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin: 0 auto;
+  gap: 0;
+}
+.categories-photos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+    margin-bottom: 20px;
+
+}
+.categories-photos-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+.category-item {
+  background: #c59f86;
+  border-radius: 6px;
+  padding: 10px 32px;
+  min-width: 160px;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #333;
+  box-shadow: 0 3px 3px #c2c0bea8;
+  transition: background 0.2s;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+    text-decoration: none; /* 🔥 Enlève le soulignement */
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.category-item:hover {
+  background: #8a4d1b;
+}
+.category-photos {
+  display: flex;
+  gap: 29px;
+}
+.photo {
+  width: 95px;
+  height: 95px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw; /* Toujours occuper toute la largeur de l'écran */
+  background: #0e0c0c;
+  z-index: 1000;
+}
+.bottom-nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 0.5em 0;
+  list-style: none;
+}
+
+.bottom-nav li a {
+  color: #fcf9f9;
+  text-decoration: none;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: color 0.2s;
+}
+
+.bottom-nav li a:hover {
+  color: #723f1546;
+}
+
+.bottom-nav i {
+  font-size: 1.5em;
+}
+
+.bottom-nav span {
+  font-size: 0.9em;
+}
+
+@media (min-width: 800px) {
+  .bottom-nav {
+    width: 100vw; /* Toujours 100% même sur bureau */
+    left: 0;
+    transform: none;
+    border-radius: 1.2em 1.2em 0 0;
+  }
+}
+
+/* Espace pour le contenu au-dessus de la nav bar si besoin (optionnel) */
+@media (max-width: 800px) {
+  .container {
+    margin-bottom: 90px; /* Espace pour ne pas masquer le contenu par la nav bar sur mobile */
+  }
+}
+.logo-cercle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.logo-cercle img {
+  width: 94px;
+  height: 94px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw; /* Toujours occuper toute la largeur de l'écran */
+  background: #0e0c0c;
+  z-index: 1000;
+  border-radius: 0;
+}
+
+
+.bottom-nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 0.5em 0;
+  list-style: none;
+}
+
+.bottom-nav li a {
+  color: #fcf9f9;
+  text-decoration: none;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: color 0.2s;
+}
+
+.bottom-nav li a:hover {
+  color: #8a4d1b;
+}
+
+.bottom-nav i {
+  font-size: 1.5em;
+}
+
+.bottom-nav span {
+  font-size: 0.9em;
+}
+
+@media (min-width: 800px) {
+  .bottom-nav {
+    width: 100vw; /* Toujours 100% même sur bureau */
+    left: 0;
+    transform: none;
+  }
+}
+.photo {
+  margin: 0 10px; /* 10px à gauche et à droite */
+  gap: 92px;
+}
+.categories-photos-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* espace horizontal et vertical entre les photos */
+}
+
+.category-photos {
+  display: flex;
+  gap: 20px; /* Espace horizontal entre les photos */
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
