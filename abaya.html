@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Boutique</title>
+  <link rel="stylesheet" href="styleab.css">
+</head>
+<body>
+  <h1>Nos Articles</h1>
+  <div class="products-grid" id="productsGrid">
+    <!-- Les box produits seront insérées ici -->
+  </div>
+
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <img id="modalImage" src="" alt="Produit">
+      <h2 id="modalTitle"></h2>
+      <p id="modalPrice"></p>
+      <div>
+        <label>Couleur :</label>
+        <select id="modalColors"></select>
+      </div>
+      <div>
+        <label>Taille :</label>
+        <select id="modalSizes"></select>
+      </div>
+      <button id="addToCartBtn">Ajouter au panier</button>
+    </div>
+  </div>
+
+  <script>
+    // Exemple de produits (à remplacer par vos vrais produits)
+    const products = [
+      {
+        id: 1,
+        name: "T-shirt classique",
+        price: 19.99,
+        image: "Ims/",
+        colors: ["Blanc", "Noir", "Bleu"],
+        sizes: ["S", "M", "L", "XL"],
+      },
+      {
+        id: 2,
+        name: "Chaussures de sport",
+        price: 49.99,
+        image: "https://via.placeholder.com/220x180?text=Chaussures",
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 3,
+        name: "Casquette stylée",
+        price: 12.50,
+        image: "https://via.placeholder.com/220x180?text=Casquette",
+        colors: ["Noir", "Kaki"],
+        sizes: ["Unique"],
+      }
+    ];
+
+    // Affichage des produits
+    const productsGrid = document.getElementById('productsGrid');
+    products.forEach(product => {
+      const box = document.createElement('div');
+      box.className = 'product-box';
+      box.innerHTML = `
+        <img class="product-img" src="${product.image}" alt="${product.name}">
+        <div>${product.name}</div>
+        <div class="product-price">${product.price.toFixed(2)} €</div>
+      `;
+      box.onclick = () => showProductModal(product);
+      productsGrid.appendChild(box);
+    });
+
+    // Modal produit
+    const modal = document.getElementById('productModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalColors = document.getElementById('modalColors');
+    const modalSizes = document.getElementById('modalSizes');
+    const addToCartBtn = document.getElementById('addToCartBtn');
+
+    let currentProduct = null;
+
+    function showProductModal(product) {
+      currentProduct = product;
+      modalImage.src = product.image;
+      modalTitle.textContent = product.name;
+      modalPrice.textContent = product.price.toFixed(2) + " €";
+
+      // Couleurs
+      modalColors.innerHTML = "";
+      product.colors.forEach(color => {
+        const opt = document.createElement('option');
+        opt.value = color;
+        opt.textContent = color;
+        modalColors.appendChild(opt);
+      });
+
+      // Tailles
+      modalSizes.innerHTML = "";
+      product.sizes.forEach(size => {
+        const opt = document.createElement('option');
+        opt.value = size;
+        opt.textContent = size;
+        modalSizes.appendChild(opt);
+      });
+
+      modal.style.display = 'flex';
+    }
+
+    // Fermer la modal
+    closeModalBtn.onclick = () => {
+      modal.style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    // Ajouter au panier
+    addToCartBtn.onclick = () => {
+      const color = modalColors.value;
+      const size = modalSizes.value;
+      alert(`Ajouté au panier : ${currentProduct.name}, Couleur: ${color}, Taille: ${size}`);
+      modal.style.display = 'none';
+    };
+  </script>
+</body>
+</html>

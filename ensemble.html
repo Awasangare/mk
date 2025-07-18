@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Boutique</title>
+  <link rel="stylesheet" href="styleab.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="header-carousel" data-images="I1.jpg,j1.jpg,Q1.jpg,U1.jpg">
+      <img src="Ims/I1.jpg" alt="Diaporama" class="logo-full">
+    </div>
+    <nav></nav>
+  </header>
+  <div class="main-logo-bar">
+    <img src="imaag.png" alt="Logo" class="main-logo">
+  </div>
+  <h1>Nos Ensembles !</h1>
+  <div class="products-grid" id="productsGrid"></div>
+
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <div class="modal-image-gallery">
+        <button class="modal-gallery-btn" id="modalPrevImg" aria-label="Précédent">&#8592;</button>
+        <img id="modalImage" src="" alt="Produit">
+        <button class="modal-gallery-btn" id="modalNextImg" aria-label="Suivant">&#8594;</button>
+      </div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalPrice"></p>
+      <div>
+        <label>Couleur :</label>
+        <select id="modalColors"></select>
+      </div>
+      <div>
+        <label>Taille :</label>
+        <select id="modalSizes"></select>
+      </div>
+      <button id="addToCartBtn">Ajouter au panier</button>
+    </div>
+  </div>
+
+  <script>
+    // Tous les produits avec plusieurs images par produit
+    const products = [
+      {
+        id: 1,
+        name: "Réf :",
+        price: 19.99,
+        images: ["E2.jpg", "E2_2.jpg", "E2_3.jpg"],
+        colors: ["Blanc", "Noir", "Bleu"],
+        sizes: ["S", "M", "L", "XL"],
+      },
+      {
+        id: 2,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "N2.jpg",
+          "N2_2.jpg",
+          "N2_3.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 3,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "C4.jpg",
+          "C4_2.jpg",
+          "C4_3.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 4,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "eeeee.jpg",
+          "eeeee_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 5,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "eeee.jpg",
+          "eeee_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 6,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "eeeeee.jpg",
+          "eeeeee_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 7,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "eeeeeeeee.jpg",
+          "eeeeeeeee_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 8,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "eeeeeeeeeeee.jpg",
+          "eeeeeeeeeeee_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 9,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "eeeeeeeeeeeeeee.jpg",
+          "eeeeeeeeeeeeeee_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 10,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "eeeeeeeeeeeeeeeee.jpg",
+          "eeeeeeeeeeeeeeeee_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 11,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "eeeeeeeeeeeeeeeeeeee.jpg",
+          "eeeeeeeeeeeeeeeeeeee_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 12,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "eeeeeeeeeeeeeeeeeeeeeeee.jpg",
+          "eeeeeeeeeeeeeeeeeeeeeeee_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 13,
+        name: "Réf :",
+        price: 49.99,
+        images: [
+          "jel11.jpg",
+          "jel11_2.jpg"
+        ],
+        colors: ["Rouge", "Noir"],
+        sizes: ["40", "41", "42", "43", "44"],
+      },
+      {
+        id: 14,
+        name: "Réf :",
+        price: 12.50,
+        images: [
+          "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.jpg",
+          "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee_2.jpg"
+        ],
+        colors: ["Noir", "Kaki"],
+        sizes: ["Unique"],
+      }
+    ];
+
+    // Affichage des produits
+    const productsGrid = document.getElementById('productsGrid');
+    products.forEach(product => {
+      const box = document.createElement('div');
+      box.className = 'product-box';
+      box.innerHTML = `
+        <img class="product-img" src="${product.images[0]}" alt="${product.name}">
+        <div>${product.name}</div>
+        <div class="product-price">${product.price.toFixed(2)} FCA</div>
+      `;
+      box.onclick = () => showProductModal(product);
+      productsGrid.appendChild(box);
+    });
+
+    // Modal produit
+    const modal = document.getElementById('productModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalColors = document.getElementById('modalColors');
+    const modalSizes = document.getElementById('modalSizes');
+    const addToCartBtn = document.getElementById('addToCartBtn');
+    const prevImgBtn = document.getElementById('modalPrevImg');
+    const nextImgBtn = document.getElementById('modalNextImg');
+
+    let currentProduct = null;
+    let currentImgIndex = 0;
+
+    function showProductModal(product) {
+      currentProduct = product;
+      currentImgIndex = 0;
+      const images = product.images || [product.image];
+
+      function updateModalImage() {
+        modalImage.src = images[currentImgIndex];
+      }
+      updateModalImage();
+
+      prevImgBtn.onclick = (e) => {
+        e.stopPropagation();
+        currentImgIndex = (currentImgIndex - 1 + images.length) % images.length;
+        updateModalImage();
+      };
+      nextImgBtn.onclick = (e) => {
+        e.stopPropagation();
+        currentImgIndex = (currentImgIndex + 1) % images.length;
+        updateModalImage();
+      };
+
+      modalTitle.textContent = product.name;
+      modalPrice.textContent = product.price.toFixed(2) + " FCA";
+
+      // Couleurs
+      modalColors.innerHTML = "";
+      product.colors.forEach(color => {
+        const opt = document.createElement('option');
+        opt.value = color;
+        opt.textContent = color;
+        modalColors.appendChild(opt);
+      });
+
+      // Tailles
+      modalSizes.innerHTML = "";
+      product.sizes.forEach(size => {
+        const opt = document.createElement('option');
+        opt.value = size;
+        opt.textContent = size;
+        modalSizes.appendChild(opt);
+      });
+
+      modal.style.display = 'flex';
+    }
+
+    // Fermer la modal
+    closeModalBtn.onclick = () => {
+      modal.style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    // Ajouter au panier
+    addToCartBtn.onclick = () => {
+      const color = modalColors.value;
+      const size = modalSizes.value;
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({
+        id: currentProduct.id,
+        name: currentProduct.name,
+        image: currentProduct.images ? currentProduct.images[0] : currentProduct.image,
+        price: currentProduct.price,
+        color,
+        size,
+        quantity: 1
+      });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`Ajouté au panier : ${currentProduct.name}, Couleur: ${color}, Taille: ${size}`);
+      modal.style.display = 'none';
+    };
+  </script>
+  <script>
+    (function() {
+      const headerCarousel = document.querySelector('.header-carousel');
+      if (!headerCarousel) return;
+      const images = headerCarousel.dataset.images.split(',').map(s=>s.trim());
+      let index = 0;
+      const img = headerCarousel.querySelector('img');
+      let timer;
+
+      function update() {
+        img.src = images[index];
+      }
+      function next() {
+        index = (index + 1) % images.length;
+        update();
+      }
+      update();
+      timer = setInterval(next, 3000);
+    })();
+  </script>
+
+  <!-- Barre de navigation en bas de page -->
+  <nav class="bottom-nav">
+    <ul>
+      <li>
+        <a href="index.html">
+          <i class="fas fa-home"></i>
+          <span>Accueil</span>
+        </a>
+      </li>
+      <li>
+        <a href="cate.html">
+          <i class="fas fa-th-large"></i>
+          <span>Catégories</span>
+        </a>
+      </li>
+      <li>
+        <a href="panier.html">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Panier</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</body>
+</html>
